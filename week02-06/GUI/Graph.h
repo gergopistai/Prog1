@@ -189,23 +189,27 @@ struct Polygon : Closed_polyline {
 
 struct Rectangle : Shape {
 
-	Rectangle(Point xy, int ww, int hh): w{ww}, h{hh}
+	Rectangle(Point xy, int ww, int hh) : w{ ww }, h{ hh }
 	{
-		if (h<=0 || w<=0) error("Nem jó oldalhossz.");
+		if (h <= 0 || w <= 0) error("Nem jó oldalhossz.");
 		add(xy);
+		pos = xy;
 	}
-	Rectangle(Point x, Point y): w{ y.x - x.x }, h{ y.y - x.y }
+	Rectangle(Point x, Point y) : w{ y.x - x.x }, h{ y.y - x.y }
 	{
-		if (h<=0 || w<=0) error("Nem jó pontok.");
+		if (h <= 0 || w <= 0) error("Nem jó pontok.");
 		add(x);
+		pos = x;
 	}
-	
+
 	void draw_lines() const;
 
 	int height() const { return h; }
 	int width() const { return w; }
+	Point get_pos() const { return pos; }
 private:
 	int h, w;
+	Point pos;
 
 };
 
@@ -301,12 +305,18 @@ private:
 	int w, h, cx, cy;
 	Fl_Image* p;
 	Text fn;
+	Point pos;
 public:
 	Image(Point xy, string s, Suffix::Encoding e = Suffix::none);
 	~Image() { delete p; }
 	void draw_lines() const;
 	void set_mask(Point xy, int ww, int hh) { w = ww; h = hh; cx=xy.x; cy=xy.y; }
-	void move(int dx, int dy) { Shape::move(dx,dy); p->draw(point(0).x,point(0).y); }
+	void move(int dx, int dy) 
+	{ 
+		Shape::move(dx,dy); p->draw(point(0).x,point(0).y);
+		pos = pos + Point{ dx, dy };
+	}
+	Point get_pos() { return pos; }
 };
 
 typedef double Fct(double);

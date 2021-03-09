@@ -218,7 +218,7 @@ bool can_open(const string& s){
 }
 
 Image::Image(Point xy, string s, Suffix::Encoding e)
-	:w(0), h(0), fn(xy,"")
+	:pos(xy), w(0), h(0), fn(xy,"")
 {
 	add(xy);
 

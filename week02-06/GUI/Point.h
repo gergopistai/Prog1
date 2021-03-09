@@ -15,6 +15,16 @@ inline bool operator==(Point a, Point b)
 inline bool operator!=(Point a, Point b)
 	{ return !(a==b); }
 
+inline Point operator*(Point a, Point b)
+{
+	return Point{ a.x * b.x, a.y * b.y };
+}
+
+inline Point operator+(Point a, Point b)
+{
+	return Point{ a.x + b.x, a.y + b.y };
+}
+
 }
 
 #endif
