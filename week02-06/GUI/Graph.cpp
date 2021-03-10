@@ -170,6 +170,20 @@ void Ellipse::draw_lines() const
 	}
 }
 
+void Arc::draw_lines() const
+{
+	if (fill_color().visibility()) {	// fill
+		fl_color(fill_color().as_int());
+		fl_pie(point(0).x, point(0).y, w + w - 1, h + h - 1, start, end);
+		fl_color(color().as_int());	// reset color
+	}
+
+	if (color().visibility()) {
+		fl_color(color().as_int());
+		fl_arc(point(0).x, point(0).y, w + w, h + h, start, end);
+	}
+}
+
 void draw_mark(Point x, char c){
 	
 	static const int dx = 4;
@@ -218,7 +232,7 @@ bool can_open(const string& s){
 }
 
 Image::Image(Point xy, string s, Suffix::Encoding e)
-	:pos(xy), w(0), h(0), fn(xy,"")
+	: w(0), h(0), fn(xy,"")
 {
 	add(xy);
 
@@ -325,6 +339,38 @@ void Axis::move(int dx, int dy)
 	Shape::move(dx, dy);
 	notches.move(dx, dy);
 	label.move(dx, dy);
+}
+
+void Box::draw_lines() const
+{
+	if (fill_color().visibility()) {
+		fl_color(fill_color().as_int());
+		/*fl_rectf(point(0).x, point(0).y, w, h);*/
+		// Filling corners
+		fl_pie(point(0).x, point(0).y, w / 2, h / 2, 90, 180);
+		fl_pie(point(0).x + w / 2, point(0).y, w / 2, h / 2, 0, 90);
+		fl_pie(point(0).x + w / 2, point(0).y + h / 2, w / 2, h / 2, 270, 360);
+		fl_pie(point(0).x, point(0).y + h / 2, w / 2, h / 2, 180, 270);
+		// Filling inner rects
+		fl_rectf(point(0).x + w / 4, point(0).y, w * 2 / 4, h);
+		fl_rectf(point(0).x, point(0).y + h / 4, w, h * 2 / 4);
+		// Reset color
+		fl_color(color().as_int());
+	}
+
+	if (color().visibility()) {
+		fl_color(color().as_int());
+		// Drawing corners
+		fl_arc(point(0).x, point(0).y, w / 2, h / 2, 90, 180);
+		fl_arc(point(0).x + w / 2, point(0).y, w / 2, h / 2, 0, 90);
+		fl_arc(point(0).x + w / 2, point(0).y + h / 2, w / 2, h / 2, 270, 360);
+		fl_arc(point(0).x, point(0).y + h / 2, w / 2, h / 2, 180, 270);
+		// Drawing lines
+		fl_line(point(0).x + w / 4, point(0).y, point(0).x + w * 3 / 4, point(0).y);
+		fl_line(point(0).x, point(0).y + h / 4, point(0).x, point(0).y + h * 3 / 4);
+		fl_line(point(0).x + w / 4, point(0).y + h, point(0).x + w * 3 / 4, point(0).y + h);
+		fl_line(point(0).x + w, point(0).y + h / 4, point(0).x + w , point(0).y + h * 3 / 4);
+	}
 }
 
 } //end Graph

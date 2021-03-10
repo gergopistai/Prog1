@@ -47,14 +47,10 @@ struct Drill13 : Drill
 			Point target_pos = grid[mark_index].get_pos();
 			Point difference = Point{ 0, 0 };
 
-			if (target_pos.x != init_pos.x)
-			{
+			if (target_pos.x != init_pos.x) 
 				difference.x = target_pos.x > init_pos.x ? target_pos.x - init_pos.x : -(init_pos.x - target_pos.x);
-			}
-			if (target_pos.y != init_pos.y)
-			{
+			if (target_pos.y != init_pos.y) 
 				difference.y = target_pos.y > init_pos.y ? target_pos.y - init_pos.y : -(init_pos.y - target_pos.y);
-			}
 
 			img_mark.move(difference.x, difference.y);
 		}

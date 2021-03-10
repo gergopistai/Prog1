@@ -316,7 +316,7 @@ public:
 		Shape::move(dx,dy); p->draw(point(0).x,point(0).y);
 		pos = pos + Point{ dx, dy };
 	}
-	Point get_pos() { return pos; }
+	Point get_pos() const { return pos; }
 };
 
 typedef double Fct(double);
@@ -334,6 +334,48 @@ struct Axis : Shape {
 
 	Text label;
 	Lines notches;
+};
+
+struct Arc : Shape
+{
+	Arc(Point p, int ww, int hh, int strt, int nd)
+		:w{ ww }, h{ hh }, start{ strt }, end{ nd } {
+		add(Point{ p.x - ww, p.y - hh });
+		if (strt >= nd) error("A kezdőpont nem lehet nagyobb a végpontnál!");
+	}
+
+	void draw_lines() const;
+
+	Point center() const { return{ point(0).x + w, point(0).y + h }; }
+
+	void set_major(int ww) { w = ww; }
+	int major() const { return w; }
+	void set_minor(int hh) { h = hh; }
+	int minor() const { return h; }
+private:
+	int w;
+	int h;
+	int start;
+	int end;
+};
+
+struct Box : Shape
+{
+	Box(Point xy, int ww, int hh) : w{ ww }, h{ hh }
+	{
+		if (h <= 0 || w <= 0) error("Nem jó oldalhossz.");
+		add(xy);
+		pos = xy;
+	}
+
+	void draw_lines() const;
+
+	int height() const { return h; }
+	int width() const { return w; }
+	Point get_pos() const { return pos; }
+private:
+	int h, w;
+	Point pos;
 };
 
 }
