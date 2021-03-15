@@ -4,5 +4,5 @@
 
 struct Drill
 {
-	virtual void Start() {};
+	virtual void start() {};
 };

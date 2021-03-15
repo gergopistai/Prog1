@@ -373,4 +373,13 @@ void Box::draw_lines() const
 	}
 }
 
+//void Arrow::draw_lines() const
+//{
+//	// Set color
+//	fl_color(color().as_int());
+//	// Draw line
+//	fl_line(point(0).x, point(0).y, point(1).x, point(1).y);
+//	// Draw Arrow head
+//}
+
 } //end Graph

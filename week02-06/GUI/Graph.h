@@ -378,5 +378,12 @@ private:
 	Point pos;
 };
 
+//struct Arrow : Shape
+//{
+//	Arrow(Point p1, Point p2) { add(p1); add(p2); }
+//
+//	void draw_lines() const;
+//};
+
 }
 #endif

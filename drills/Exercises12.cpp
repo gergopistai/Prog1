@@ -2,7 +2,7 @@
 
 struct Exercise12 : Drill
 {
-	void Start() override
+	void start() override
 	{
 		using namespace Graph_lib;
 

@@ -2,7 +2,7 @@
 
 struct Drill13 : Drill
 {
-	void start()
+	void start() override
 	{
 		using namespace Graph_lib;
 		Simple_window win{ Point{100, 100}, 1000, 800, "Drill 13" };
