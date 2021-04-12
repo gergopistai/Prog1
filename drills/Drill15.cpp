@@ -37,7 +37,7 @@ inline istream& operator>>(istream& is, Person& p)
 
 inline ostream& operator<<(ostream& os, Person& p)
 {
-	return os << p.get_full_name() << " " << p.get_age();
+	return os << p.get_first_name() << " " << p.get_last_name() << " " << p.get_age();
 }
 
 class Drill15 : Drill
@@ -112,7 +112,7 @@ public:
 
 		vector<Person> input_people;
 
-		cout << "Input some people:" << endl;
+		cout << "Input three people (first_name last_name age):" << endl;
 		for (int i = 0; i < 3; i++)
 		{
 			Person input;

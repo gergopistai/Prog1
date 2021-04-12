@@ -11,12 +11,11 @@ struct Drill12 : Drill
 		// 12.7.3
 		// Axis
 		Axis xa{ Axis::x, Point{20, 320}, 280, 10, "x axis" };
-		Axis ya{ Axis::y, Point{20, 320}, 280, 10, "y axis" };
-
 		xa.set_color(Color::magenta);
-		ya.set_color(Color::cyan);
-
 		win.attach(xa);
+
+		Axis ya{ Axis::y, Point{20, 320}, 280, 10, "y axis" };
+		ya.set_color(Color::cyan);
 		win.attach(ya);
 
 		// 12.7.4

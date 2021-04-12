@@ -12,60 +12,78 @@ public:
 		Window(xy, w, h, title)
 	{
 		// Drills
-		Button* d12 = new Button{ Point{ 5, 5 }, 70, 20, "Drill 12",
+		constexpr int drill_x = 70;
+		constexpr int drill_y = 20;
+		constexpr int drill_pos_x = 5;
+		int d_separ = 0;
+
+		Button* d12 = new Button{ Point{ drill_pos_x, 5 + d_separ++ }, drill_x, drill_y, "Drill 12",
 			[](Address, Address pw) {reference_to<Main_window>(pw).start_drill(12); } };
 		attach(*d12);
 
-		Button* d13 = new Button{ Point{ 5, 25 + 1}, 70, 20, "Drill 13",
+		Button* d13 = new Button{ Point{ drill_pos_x, 25 + d_separ++ }, drill_x, drill_y, "Drill 13",
 			[](Address, Address pw) {reference_to<Main_window>(pw).start_drill(13); } };
 		attach(*d13);
 
-		Button* d14 = new Button{ Point{ 5, 45 + 2}, 70, 20, "Drill 14",
+		Button* d14 = new Button{ Point{ drill_pos_x, 45 + d_separ++ }, drill_x, drill_y, "Drill 14",
 			[](Address, Address pw) {reference_to<Main_window>(pw).start_drill(14); } };
 		attach(*d14);
 
-		Button* d15 = new Button{ Point{ 5, 65 + 3}, 70, 20, "Drill 15",
+		Button* d15 = new Button{ Point{ drill_pos_x, 65 + d_separ++ }, drill_x, drill_y, "Drill 15",
 			[](Address, Address pw) {reference_to<Main_window>(pw).start_drill(15); } };
 		attach(*d15);
 
-		Button* d16 = new Button{ Point{ 5, 85 + 4}, 70, 20, "Drill 16",
+		Button* d16 = new Button{ Point{ drill_pos_x, 85 + d_separ++ }, drill_x, drill_y, "Drill 16",
 			[](Address, Address pw) {reference_to<Main_window>(pw).start_drill(16); } };
 		attach(*d16);
 
-		Button* d19 = new Button{ Point{ 5, 105 + 5}, 70, 20, "Drill 19",
+		Button* d19 = new Button{ Point{ drill_pos_x, 105 + d_separ++ }, drill_x, drill_y, "Drill 19",
 			[](Address, Address pw) {reference_to<Main_window>(pw).start_drill(19); } };
 		attach(*d19);
 
-		Button* d20 = new Button{ Point{ 5, 125 + 6}, 70, 20, "Drill 20",
+		Button* d20 = new Button{ Point{ drill_pos_x, 125 + d_separ++ }, drill_x, drill_y, "Drill 20",
 			[](Address, Address pw) {reference_to<Main_window>(pw).start_drill(20); } };
 		attach(*d20);
 
-		Button* d21 = new Button{ Point{ 5, 145 + 7}, 70, 20, "Drill 21",
+		Button* d21 = new Button{ Point{ drill_pos_x, 145 + d_separ++ }, drill_x, drill_y, "Drill 21",
 			[](Address, Address pw) {reference_to<Main_window>(pw).start_drill(21); } };
 		attach(*d21);
 
-		Button* d27 = new Button{ Point{ 5, 165 + 8}, 70, 20, "Drill 27",
+		Button* d27 = new Button{ Point{ drill_pos_x, 165 + d_separ++ }, drill_x, drill_y, "Drill 27",
 			[](Address, Address pw) {reference_to<Main_window>(pw).start_drill(27); } };
 		attach(*d27);
+
 		// Exercises
 		Button* ex12 = new Button{ Point{80, 5}, 80, 20, "Exercise 12",
-			[](Address, Address pw) {reference_to<Main_window>(pw).start_exercise(); } };
+			[](Address, Address pw) {reference_to<Main_window>(pw).start_exercise(12); } };
 		attach(*ex12);
+
 		// Other buttons
 		Button* exit = new Button{ Point{ x_max() - 75, 5}, 70, 20, "Exit",
 			[](Address, Address pw) {reference_to<Main_window>(pw).exit(); } };
 		attach(*exit);
 	}
 
+private:
 	void exit()
 	{
 		hide();
 	}
 
-	void start_exercise()
+	void start_exercise(int num)
 	{
-		Exercise12 e12;
-		e12.start();
+		switch (num)
+		{
+			case 12:
+			{
+				Exercise12 e12;
+				e12.start();
+			}
+			default:
+			{
+				cout << "Not implemented yet." << endl;
+			}
+		}
 	}
 
 	void start_drill(int num)
@@ -104,7 +122,8 @@ public:
 			}
 			default:
 			{
-
+				cout << "Not implemented yet."<< endl;
+				break;
 			}
 		}
 	}

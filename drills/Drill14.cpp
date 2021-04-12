@@ -84,8 +84,5 @@ struct Drill14 : Drill
 
 		D22 d22;
 		f(d22);
-
-		// Wait for input before closing console
-		cin.get();
 	}
 };
