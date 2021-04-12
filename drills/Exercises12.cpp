@@ -1,4 +1,4 @@
-#include "../Drill.h"
+#include "Drill.h"
 
 struct Exercise12 : Drill
 {
