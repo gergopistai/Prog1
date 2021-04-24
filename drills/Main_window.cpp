@@ -5,6 +5,7 @@
 #include "Drill15.cpp"
 #include "Drill16.cpp"
 #include "Drill19.cpp"
+#include "Drill20.cpp"
 
 class Main_window : Window
 {
@@ -127,6 +128,12 @@ private:
 			{
 				Drill19 d19;
 				d19.start();
+				break;
+			}
+			case 20:
+			{
+				Drill20 d20;
+				d20.start();
 				break;
 			}
 			default:
